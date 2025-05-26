@@ -1,6 +1,141 @@
-git init
-git add index.html
-git commit -m "Primeiro commit - site ComboTv"
-git branch -M main
-git remote add origin https://github.com/seu_usuario/combotv-site.git
-git push -u origin main
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ComboTv - IPTV 4K</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: #1f1f1f;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      border-bottom: 2px solid #007acc;
+    }
+    main {
+      flex: 1;
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #00aaff;
+      margin-bottom: 0.5rem;
+    }
+    p.description {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      line-height: 1.4;
+    }
+    section.plans {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .plan {
+      background: #222;
+      padding: 1.5rem;
+      border-radius: 8px;
+      width: 220px;
+      box-shadow: 0 0 10px #007acc44;
+      text-align: center;
+      border: 1px solid #007acc;
+      transition: transform 0.3s ease;
+    }
+    .plan:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00aaffaa;
+    }
+    .plan h2 {
+      margin: 0 0 1rem;
+      color: #00aaff;
+    }
+    .plan p.price {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .plan p.details {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      color: #ccc;
+    }
+    .btn-test {
+      display: inline-block;
+      background: #00aaff;
+      color: #121212;
+      font-weight: bold;
+      padding: 0.6rem 1.2rem;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .btn-test:hover {
+      background: #007acc;
+      color: #fff;
+    }
+    footer {
+      background: #1f1f1f;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #aaa;
+      border-top: 2px solid #007acc;
+    }
+    .contact {
+      margin: 1rem 0 0;
+      font-size: 1.1rem;
+      color: #00aaff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>ComboTv</header>
+  <main>
+    <h1>Assista mais de 75 mil conteúdos em até 4K</h1>
+    <p class="description">Filmes, séries e canais ao vivo para você aproveitar onde quiser.</p>
+
+    <section class="plans">
+      <div class="plan">
+        <h2>Plano 1 Tela</h2>
+        <p class="price">R$ 30,00 / mês</p>
+        <p class="details">Acesso em 1 dispositivo simultâneo</p>
+        <a href="https://wa.me/5533999574160" class="btn-test" target="_blank">Teste Grátis</a>
+      </div>
+      <div class="plan">
+        <h2>Plano 2 Telas</h2>
+        <p class="price">R$ 45,00 / mês</p>
+        <p class="details">Acesso em até 2 dispositivos simultâneos</p>
+        <a href="https://wa.me/5533999574160" class="btn-test" target="_blank">Teste Grátis</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Formas de pagamento</h2>
+      <p>Pix e Cartões de Crédito</p>
+    </section>
+
+    <section class="contact">
+      <p>Contato via WhatsApp: <a href="https://wa.me/5533999574160" target="_blank" style="color:#00aaff;">(33) 99995-74160</a></p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 ComboTv. Todos os direitos reservados.
+  </footer>
+</body>
+</html>
