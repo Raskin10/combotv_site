@@ -1,141 +1,245 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ComboTv - IPTV 4K</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
-      color: #eee;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    header {
-      background: #1f1f1f;
-      padding: 1rem 2rem;
-      text-align: center;
-      font-size: 1.8rem;
-      font-weight: bold;
-      letter-spacing: 2px;
-      border-bottom: 2px solid #007acc;
-    }
-    main {
-      flex: 1;
-      padding: 2rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    h1 {
-      color: #00aaff;
-      margin-bottom: 0.5rem;
-    }
-    p.description {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      line-height: 1.4;
-    }
-    section.plans {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-    .plan {
-      background: #222;
-      padding: 1.5rem;
-      border-radius: 8px;
-      width: 220px;
-      box-shadow: 0 0 10px #007acc44;
-      text-align: center;
-      border: 1px solid #007acc;
-      transition: transform 0.3s ease;
-    }
-    .plan:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00aaffaa;
-    }
-    .plan h2 {
-      margin: 0 0 1rem;
-      color: #00aaff;
-    }
-    .plan p.price {
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-    .plan p.details {
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-      color: #ccc;
-    }
-    .btn-test {
-      display: inline-block;
-      background: #00aaff;
-      color: #121212;
-      font-weight: bold;
-      padding: 0.6rem 1.2rem;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
-    .btn-test:hover {
-      background: #007acc;
-      color: #fff;
-    }
-    footer {
-      background: #1f1f1f;
-      padding: 1rem 2rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #aaa;
-      border-top: 2px solid #007acc;
-    }
-    .contact {
-      margin: 1rem 0 0;
-      font-size: 1.1rem;
-      color: #00aaff;
-      font-weight: bold;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ComboTv - Sua TV Online</title>
+<style>
+  /* Reset básico */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    overflow-x: hidden;
+    position: relative;
+    background: #000;
+  }
+
+  /* Slideshow de fundo */
+  .slideshow-background {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -2;
+    overflow: hidden;
+  }
+  .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+  }
+  .slide.active {
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+  }
+
+  /* Camada escura sobre o slideshow */
+  .overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: -1;
+  }
+
+  /* Conteúdo do site */
+  header {
+    background: transparent;
+    padding: 20px;
+    text-align: center;
+  }
+  header h1 {
+    color: #00ffc8;
+    font-size: 3rem;
+  }
+  header p {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #a0f0db;
+  }
+  a.btn {
+    background-color: #00ffc8;
+    color: #000;
+    padding: 12px 25px;
+    margin: 10px 5px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  section {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+  }
+  h2 {
+    color: #00ffc8;
+    margin-bottom: 20px;
+  }
+  ul {
+    list-style: none;
+  }
+  ul li {
+    background: rgba(255 255 255 / 0.1);
+    margin: 10px 0;
+    padding: 12px 20px;
+    border-radius: 8px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  th, td {
+    border: 1px solid #333;
+    padding: 15px;
+    text-align: center;
+  }
+  th {
+    background-color: #00ffc8;
+    color: #000;
+  }
+  td {
+    background-color: rgba(255 255 255 / 0.1);
+  }
+  form input, form select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+  }
+  form button {
+    background-color: #00ffc8;
+    color: #000;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50px;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 24px;
+    z-index: 10;
+  }
+</style>
 </head>
 <body>
-  <header>ComboTv</header>
-  <main>
-    <h1>Assista mais de 75 mil conteúdos em até 4K</h1>
-    <p class="description">Filmes, séries e canais ao vivo para você aproveitar onde quiser.</p>
 
-    <section class="plans">
-      <div class="plan">
-        <h2>Plano 1 Tela</h2>
-        <p class="price">R$ 30,00 / mês</p>
-        <p class="details">Acesso em 1 dispositivo simultâneo</p>
-        <a href="https://wa.me/5533999574160" class="btn-test" target="_blank">Teste Grátis</a>
-      </div>
-      <div class="plan">
-        <h2>Plano 2 Telas</h2>
-        <p class="price">R$ 45,00 / mês</p>
-        <p class="details">Acesso em até 2 dispositivos simultâneos</p>
-        <a href="https://wa.me/5533999574160" class="btn-test" target="_blank">Teste Grátis</a>
-      </div>
-    </section>
+<div class="slideshow-background">
+  <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=1920&q=80');"></div>
+  <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1542206395-9feb3edaa68f?auto=format&fit=crop&w=1920&q=80');"></div>
+  <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80');"></div>
+</div>
+<div class="overlay"></div>
 
-    <section>
-      <h2>Formas de pagamento</h2>
-      <p>Pix e Cartões de Crédito</p>
-    </section>
+<header>
+  <h1>ComboTv</h1>
+  <p>Assista tudo onde e quando quiser!</p>
+  <a class="btn" href="https://wa.me/5533999574160" target="_blank">Fale no WhatsApp</a>
+  <a class="btn" href="#teste">Teste Grátis</a>
+</header>
 
-    <section class="contact">
-      <p>Contato via WhatsApp: <a href="https://wa.me/5533999574160" target="_blank" style="color:#00aaff;">(33) 99995-74160</a></p>
-    </section>
-  </main>
+<section class="vantagens">
+  <h2>Por que escolher a ComboTv?</h2>
+  <ul>
+    <li>+75.000 conteúdos: filmes, séries, desenhos, esportes e mais.</li>
+    <li>Canais ao vivo nacionais, internacionais, esportivos e variedades.</li>
+    <li>Qualidade 4K, Full HD e HD.</li>
+    <li>Suporte rápido e dedicado via WhatsApp.</li>
+    <li>Assista em TV, celular, computador, tablet e TV Box.</li>
+    <li>Sem burocracia, sem contrato e sem fidelidade.</li>
+  </ul>
+</section>
 
-  <footer>
-    &copy; 2025 ComboTv. Todos os direitos reservados.
-  </footer>
+<section id="planos">
+  <h2>Nossos Planos</h2>
+  <table>
+    <tr><th>Plano</th><th>Valor Mensal</th><th>Telas Simultâneas</th></tr>
+    <tr><td>Básico</td><td>R$ 30,00</td><td>1 Tela</td></tr>
+    <tr><td>Premium</td><td>R$ 45,00</td><td>2 Telas</td></tr>
+  </table>
+  <a class="btn" href="https://wa.me/5533999574160" target="_blank">Quero Assinar</a>
+</section>
+
+<section id="teste">
+  <h2>Faça seu Teste Grátis!</h2>
+  <form id="formTeste">
+    <input type="text" id="nome" placeholder="Seu Nome" required />
+    <input type="text" id="whatsapp" placeholder="Seu WhatsApp (DDD + número)" required />
+    <select id="dispositivo" required>
+      <option value="">Selecione seu dispositivo</option>
+      <option value="TV">TV</option>
+      <option value="Celular">Celular</option>
+      <option value="Computador">Computador</option>
+      <option value="Tablet">Tablet</option>
+      <option value="TV Box">TV Box</option>
+    </select>
+    <button type="button" onclick="enviarWhatsApp()">Enviar</button>
+  </form>
+</section>
+
+<section id="contato">
+  <h2>Fale Conosco</h2>
+  <p>Atendimento rápido no WhatsApp. Clique abaixo:</p>
+  <a class="btn" href="https://wa.me/5533999574160" target="_blank">WhatsApp (33) 99957-4160</a>
+</section>
+
+<a class="whatsapp-float" href="https://wa.me/5533999574160" target="_blank">💬</a>
+
+<script>
+  // Slideshow automático
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+  }
+
+  setInterval(nextSlide, 7000); // troca a cada 7 segundos
+
+  // Form WhatsApp
+  function enviarWhatsApp() {
+    const nome = document.getElementById('nome').value.trim();
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+    const dispositivo = document.getElementById('dispositivo').value;
+
+    if (!nome || !whatsapp || !dispositivo) {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
+
+    const mensagem = `Olá, meu nome é ${nome}. Quero fazer o teste grátis. Meu WhatsApp é ${whatsapp} e vou usar no dispositivo: ${dispositivo}.`;
+
+    const url = `https://wa.me/5533999574160?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, '_blank');
+  }
+</script>
+
 </body>
 </html>
